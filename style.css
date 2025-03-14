@@ -10,28 +10,31 @@ body {
 
 
 /* 버튼 관련 */
-.login-button {
+.button {
     background-color: #3692FF;
-    width: 128px;
-    height: 48px;
-    border-radius: 8px;
-    border: 0;
     color: #F3F4F6;
-    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;   
+    align-items: center;
+    text-decoration: none;
+}
+
+.login-button {
+    width: 128px;
+    height: 48px;
+    font-size: 16px;
+    border-radius: 8px;
 }
 
 .find-items-button {
-    background-color: #3692FF;
     width: 357px;
     height: 56px;
-    border-radius: 40px;
-    border: 0;
-    color:#F3F4F6;
     font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
+    border-radius: 40px;
+
 }
 
 /* header */
@@ -120,8 +123,9 @@ section.hot-item > .hot-item {
     gap: 64px;
     background-color: #FCFCFC;
     border-radius: 12px;
+    overflow: hidden;
 }
-.hot-item-text > h1 {
+.hot-item-text > p {
     color: #3692FF;
     font-size: 18px;
     font-weight: 700;
@@ -157,8 +161,9 @@ section.Search > .Search {
     gap: 64px;
     background-color:#FCFCFC;
     border-radius: 12px;
+    overflow: hidden;
 }
-.search-text > h1 {
+.search-text > p {
     color: #3692FF;
     font-size: 18px;
     font-weight: 700;
@@ -194,8 +199,9 @@ section.Register > .Register {
     gap: 64px;
     background-color:#FCFCFC;
     border-radius: 12px;
+    overflow: hidden;
 }
-.register-text > h1 {
+.register-text > p {
     color: #3692FF;
     font-size: 18px;
     font-weight: 700;
@@ -216,7 +222,10 @@ section.Register > .Register {
 .hot-item-image img, .search-image img, .register-image img {
     width: 579px;
     height: 444px;
+    display: block;
 }
+
+
 
 /* bottom-banner */
 section.bottom-banner {
@@ -247,6 +256,7 @@ section.bottom-banner > .bottom-banner {
 .bottom-banner-image img {
     width: 746px;
     height: 397px;
+    display: block;
 }
 
 /* footer */
@@ -292,9 +302,13 @@ section.bottom-banner > .bottom-banner {
     text-decoration: none;
 }
 
+.footer-right-sns {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
 
-
-.footer-right-sns > a {
+.footer-right-sns > li {
     margin-right: 12px;
     cursor: pointer;
 }
