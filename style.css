@@ -8,6 +8,7 @@ body {
     /* text-align: center; */
 }
 
+
 /* 버튼 관련 */
 .login-button {
     background-color: #3692FF;
@@ -58,6 +59,16 @@ header {
     gap: 8.6px;
 }
 
+.logo-image img {
+    width: 40px;
+    height: 40px;
+}
+.logo-text img {
+    width: 103px;
+    height: auto;
+}
+
+
 /* main */
 /* top-banner */
 section.top-banner {
@@ -79,6 +90,11 @@ section.top-banner > .top-banner {
     font-size: 40px;
     font-weight: 700;
     line-height: 56px;
+}
+
+.top-banner-image img {
+    width: 746px;
+    height: 340px;
 }
 /* hot-item */
 /* 사진이 약간 뜨는데 이유를 모르겠음 ; center를 주면 뜸
@@ -197,6 +213,11 @@ section.Register > .Register {
     line-height: 32px;
 }
 
+.hot-item-image img, .search-image img, .register-image img {
+    width: 579px;
+    height: 444px;
+}
+
 /* bottom-banner */
 section.bottom-banner {
     width: 100%;
@@ -221,6 +242,11 @@ section.bottom-banner > .bottom-banner {
     font-size: 40px;
     font-weight: 700;
     line-height: 56px;
+}
+
+.bottom-banner-image img {
+    width: 746px;
+    height: 397px;
 }
 
 /* footer */
@@ -271,4 +297,8 @@ section.bottom-banner > .bottom-banner {
 .footer-right-sns > a {
     margin-right: 12px;
     cursor: pointer;
+}
+
+.footer-right-sns img {
+    width: 20px;
 }
