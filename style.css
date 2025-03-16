@@ -8,7 +8,6 @@ body {
     /* text-align: center; */
 }
 
-
 /* 버튼 관련 */
 .button {
     background-color: #3692FF;
@@ -34,7 +33,6 @@ body {
     height: 56px;
     font-size: 20px;
     border-radius: 40px;
-
 }
 
 /* header */
@@ -52,6 +50,9 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    position: fixed;
+    width: 100%;
+    background-color: white;
 }
 
 .logo {
@@ -66,6 +67,7 @@ header {
     width: 40px;
     height: 40px;
 }
+
 .logo-text img {
     width: 103px;
     height: auto;
@@ -73,6 +75,10 @@ header {
 
 
 /* main */
+.main-wrapper {
+    padding-top: 70px;
+}
+
 /* top-banner */
 section.top-banner {
     width: 100%;
@@ -99,12 +105,9 @@ section.top-banner > .top-banner {
     width: 746px;
     height: 340px;
 }
+
 /* hot-item */
-/* 사진이 약간 뜨는데 이유를 모르겠음 ; center를 주면 뜸
-    사진과 텍스트 양 옆 마진 주는것 외에 피그마대로 만들기가 어려움
-    상자 속 이미지 라운드 상속 안됨 why?
-    1920에서 줄어들때 다른 요소들의 크기는 그대로이나 글자가 위로 솟구침
- */
+
 section.hot-item {
     width: 100%;
     height: 720px;
