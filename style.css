@@ -121,7 +121,7 @@
     }
     
     .top-banner-image img {
-        width: 448px;
+        width: 100%;
         height: auto;
         display: block
     }
@@ -321,19 +321,18 @@
     }
     
     .footer-box {
-        display: grid;
+        display: flex;
         flex-direction: row;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto auto;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
         gap: 60px;
-        padding: 10px;
+        margin: 10px;
     }
     
     .footer-left {
         color: #9CA3AF;
-        grid-column: 1 / -1;
-        grid-row: 2;
-        align-self: end;
+        order: 1;
     }
 
     .footer-mid {
@@ -346,7 +345,7 @@
         a:visited {
             color: #E5E7EB;
         }
-        grid-column: 1;
+
     }
     
     .footer-mid > a {
@@ -357,8 +356,6 @@
     .footer-right-sns {
         display: flex;
         flex-direction: row;
-        grid-column: 2;
-        justify-self: end;
         list-style-type: none;
     }
     
