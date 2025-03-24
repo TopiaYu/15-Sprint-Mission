@@ -692,6 +692,7 @@
     .footer-left {
         color: #9CA3AF;
         width: 112px;
+        order: 0;
     }
     
     .footer-mid {
@@ -1040,6 +1041,7 @@
     
     .footer-left {
         color: #9CA3AF;
+        order: 0;
     }
     
     .footer-mid {
