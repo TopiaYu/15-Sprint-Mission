@@ -11,6 +11,7 @@ import {
 
 import LoginProfile from '../assets/LoginProfile.png';
 import logo1x from '../assets/logo1x.png';
+import { Link } from 'react-router-dom';
 
 /** @jsxImportSource @emotion/react */
 
@@ -18,11 +19,14 @@ const Header = () => {
     return(
         <div css={headerStyle}>
             <div css={headerInner}>
-                <div css={headerLeft}>    
-                    <img src={logo1x} alt='로고'></img>           
+                <div css={headerLeft}>  
+                    <Link to={"/"}>
+                        <img src={logo1x} alt='로고'></img>  
+                    </Link>         
                     <div css={NavlinkStyle}>
-                        <a href="" css={aTag}>자유게시판</a>
-                        <a href="" css={aTag}>중고마켓</a>
+                        <Link to={""} css={aTag}>자유게시판</Link>
+                        <Link to={"/Items"} css={aTag}>중고마켓</Link>
+
                     </div>
                 </div>    
                 <img src={LoginProfile} alt='로그인프로필' css={LoginProfileStyle}></img>

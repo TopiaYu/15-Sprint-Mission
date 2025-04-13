@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import Header from "../Header"
 import BestItem from "../BestItem"
 import AllItems from "../AllItems"
@@ -8,7 +7,7 @@ import AllItems from "../AllItems"
 const Items = () => {
     return(
         <div>
-            <Header />
+            {/* <Header /> */}
             <BestItem />
             <AllItems />
         </div>
