@@ -1,15 +1,16 @@
-import Header from "./components/pages/Header"
-import BestItem from "./components/pages/BestItem"
-import AllItems from "./components/pages/AllItems"
+import './App.css'
+import Items from "./components/pages/items";
+import { Route, Routes } from "react-router";
 
 function App() {
 
   return (
-    <>
-      <Header />
-      <BestItem />
-      <AllItems />
-    </>
+    <Routes>
+      <Route path="/" element={<main />} />
+      <Route path="/items" element={<Items />} />
+
+      
+    </Routes>
   )
 }
 
