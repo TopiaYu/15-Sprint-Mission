@@ -1,6 +1,7 @@
 import './App.css'
 import Header from './components/Header';
-import Main from './components/Main';
+import Main from './components/pages/Main';
+import FreeBoard from './components/FreeBoard';
 import Items from "./components/pages/items";
 import { Route, Routes } from "react-router";
 
@@ -14,6 +15,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/freeBoard" element={<FreeBoard />} />
         <Route path="/items" element={<Items />} />
 
         

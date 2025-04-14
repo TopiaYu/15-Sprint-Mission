@@ -6,6 +6,7 @@ const headerStyle = css`
     max-width: 1120px;
     margin: 0 auto ;
     padding: 0 200px;
+    positon: fixed;
 `
 
 const headerInner = css`
