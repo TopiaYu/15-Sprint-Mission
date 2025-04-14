@@ -23,7 +23,7 @@ const Items = () => {
     return(
         <div css={itemsStyle}>
             <BestItem items={items} handleLoad={handleLoad}/>
-            {/* <AllItems /> */}
+            <AllItems items={items} handleLoad={handleLoad}/>
         </div>
     )
 }

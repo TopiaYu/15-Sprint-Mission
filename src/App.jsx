@@ -1,7 +1,7 @@
 import './App.css'
 import Header from './components/Header';
 import Main from './components/pages/Main';
-import FreeBoard from './components/FreeBoard';
+import FreeBoard from './components/pages/FreeBoard';
 import Items from "./components/pages/items";
 import { Route, Routes } from "react-router";
 
@@ -9,10 +9,8 @@ function App() {
 
   return (
     <>
-      <div>
-        <Header />
-      </div>
-
+      <Header />
+  
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/freeBoard" element={<FreeBoard />} />

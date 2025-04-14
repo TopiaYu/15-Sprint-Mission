@@ -5,6 +5,7 @@ const itemsStyle = css`
     margin: 24px auto 0px; 
     display: flex;
     flex-direction: column;
+    // padding-top: 70px;
 `
 
 export {

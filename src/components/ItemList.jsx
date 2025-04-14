@@ -15,7 +15,7 @@ const ItemList = ({ item }) => {
             <div css={itemListStyle}>
                 <img css={itemImage} src={item.images} ></img>
                 <p css={itemTitle}>{item.name}</p>
-                <p css={itemPrice}>{item.price}</p>
+                <p css={itemPrice}>{`${item.price}원`}</p>
                 <p css={itemLikes}>🤍 {item.favoriteCount}</p>
             </div>
         </>

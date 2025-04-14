@@ -1,24 +1,27 @@
 import { css } from '@emotion/react';
 
 const headerStyle = css`
-    display: flex;
-    justify-content: center;
-    max-width: 1120px;
-    margin: 0 auto ;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 70px;
     padding: 0 200px;
-    positon: fixed;
+    background: white;
+    border-bottom: 1px solid #DFDFDF;
+
 `
 
 const headerInner = css`
     display: flex;
     justify-content: space-between;
+    margin: 0 auto ;
     align-items: center;
     width: 100%;
 `
 
 const LoginProfileStyle = css`
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
 `
 
 const headerLeft = css`

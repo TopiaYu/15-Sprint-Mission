@@ -8,6 +8,7 @@ import ItemList from "./ItemList";
 /** @jsxImportSource @emotion/react */
 
 const BestItem = ({ items }) => {
+    const bestItems = items.slice(0, 4);
 
     return(
         <div css={constainer}>
@@ -16,7 +17,7 @@ const BestItem = ({ items }) => {
             </h2>
             
             <div css={itemGrid} >
-                {items.map((item) => {
+                {bestItems.map((item) => {
                     return <ItemList key={item.id} item={item}/>
                 })}                
             </div>
