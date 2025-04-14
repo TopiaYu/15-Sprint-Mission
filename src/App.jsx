@@ -1,4 +1,6 @@
 import './App.css'
+import { Global } from '@emotion/react';
+import { globalStyle } from './GlobalStyle';
 import Header from './components/Header';
 import Main from './components/pages/Main';
 import FreeBoard from './components/pages/FreeBoard';
@@ -9,15 +11,16 @@ function App() {
 
   return (
     <>
-      <Header />
-  
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/freeBoard" element={<FreeBoard />} />
-        <Route path="/items" element={<Items />} />
+      <Global styles={globalStyle} />
+        <Header />
+    
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/freeBoard" element={<FreeBoard />} />
+          <Route path="/items" element={<Items />} />
 
         
-      </Routes>
+        </Routes>
     </>
   )
 }
