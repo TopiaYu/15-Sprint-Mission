@@ -4,7 +4,6 @@ import { css } from "@emotion/react"
 const constainer = css`
     width: 100%;
     height: 426px;
-
 `
 
 const title = css`

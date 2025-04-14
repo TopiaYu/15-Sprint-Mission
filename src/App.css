@@ -19,5 +19,6 @@
 }
 
 body * {
-    font-family: "Pretendard-M"
+    font-family: "Pretendard-M";
+    box-sizing: border-box;
 }

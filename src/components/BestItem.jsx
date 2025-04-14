@@ -7,20 +7,22 @@ import ItemList from "./ItemList";
 
 /** @jsxImportSource @emotion/react */
 
-const BestItem = () => {
+const BestItem = ({ items }) => {
+
     return(
         <div css={constainer}>
             <h2 css={title}>
                 베스트 상품
             </h2>
-            <div css={itemGrid}>
-                <ItemList />
-                <ItemList />
-                <ItemList />
-                <ItemList />
+            
+            <div css={itemGrid} >
+                {items.map((item) => {
+                    return <ItemList key={item.id} item={item}/>
+                })}                
             </div>
         </div>
     )
+    
 }
 
 export default BestItem;
