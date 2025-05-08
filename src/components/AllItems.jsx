@@ -6,10 +6,14 @@ import {
     pagenation
 } from "./AllitemsStyle";
 import ItemList from "./ItemList";
+import Pagination from "./Pagination";
 
 /** @jsxImportSource @emotion/react */
 
 const AllItems = ({ items, onChangeOrder }) => {
+
+    
+
     return(
         <div>
             <div css={constainer}>
@@ -33,6 +37,10 @@ const AllItems = ({ items, onChangeOrder }) => {
                 <div css={pagenation} >
                     페이지네이션 버튼
                 </div>
+                {/* <Pagination
+                    currentPage={currentPage}
+                    totalPages={10}
+                    onPageChange={setCurr} */}
             </div>
         </div>
     )
