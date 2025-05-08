@@ -1,29 +1,33 @@
-import Header from "../Header"
 import BestItem from "../BestItem"
 import AllItems from "../AllItems"
-import { itemsStyle } from "../ItemsStyle"
+import { itemsStyle } from "./ItemsStyle"
 import { useState, useEffect } from "react"
 import { getItems } from "../../api/Api"
 
 /** @jsxImportSource @emotion/react */
 
 const Items = () => {
-    const [items, setItems] = useState([])
+    const [allItems, setAllItems] = useState([])
+    const [bestItems, setBestItems] = useState([])
+    const [orderBy, setOrderBy] = useState("recent")
 
-    const handleLoad = async () => {
-        const { list } = await getItems();
-        setItems(list);
-        console.log(list)
+    const handleLoad = async (order = orderBy) => {
+        const [best, all]= await Promise.all([
+            getItems({page:1, pageSize:4, orderBy: "favorite"}),
+            getItems({page:1, pageSize:10, orderBy: order}),
+        ]);
+        setBestItems(best.list);
+        setAllItems(all.list);
     }
 
     useEffect(() => {
-        handleLoad()
-    }, [])
+        handleLoad(orderBy)
+    }, [orderBy])
 
     return(
         <div css={itemsStyle}>
-            <BestItem items={items} handleLoad={handleLoad}/>
-            <AllItems items={items} handleLoad={handleLoad}/>
+            <BestItem items={bestItems} handleLoad={handleLoad}/>
+            <AllItems items={allItems} onChangeOrder={(order)=> setOrderBy(order)}/>
         </div>
     )
 }

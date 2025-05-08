@@ -28,12 +28,25 @@ const header = css`
         padding: 20px;
     }
     
-    > button {
+    > button, select {
         width: 130px;
         height: 42px;
         border: 0px;
         border-radius: 12px;
-        cursor: pointer;
+        cursor: pointer;   
+        color: var(--gray-800) 
+    }
+
+    > button {
+        background: var(--blue);
+        color: white;
+    }
+    
+    > select {
+        border: 1px solid var(--gray-200);
+        padding: 12px 20px;
+    }
+
     }
 `
 
@@ -43,7 +56,13 @@ const itemGrid = css`
     gap: 24px;
 
     @media (max-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    @media (max-width: 425px) {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;    
     }
 
 `

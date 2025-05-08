@@ -21,6 +21,12 @@ const itemGrid = css`
 
     @media (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    @media (max-width: 425px) {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 8px;
     }
 
 `
