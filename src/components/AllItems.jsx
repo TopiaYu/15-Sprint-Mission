@@ -7,12 +7,11 @@ import {
 } from "./AllitemsStyle";
 import ItemList from "./ItemList";
 import Pagination from "./Pagination";
+import { Link } from 'react-router-dom';
 
 /** @jsxImportSource @emotion/react */
 
 const AllItems = ({ items, onChangeOrder }) => {
-
-    
 
     return(
         <div>
@@ -20,7 +19,10 @@ const AllItems = ({ items, onChangeOrder }) => {
                 <div css={header}>
                     <h2 css={title}>전체 상품</h2>
                     <input placeholder="🔎 검색할 상품을 입력해주세요"></input>
-                    <button>상품 등록하기</button>
+                    <Link to={"/additem"}>
+                    상품 등록하기
+                        {/* <button >상품 등록하기</button> */}
+                    </Link>
                     <select onChange={(e)=> onChangeOrder(e.target.value)}>
                         <option value={"recent"}>최신순</option>
                         <option value={"favorite"}>좋아요순</option>

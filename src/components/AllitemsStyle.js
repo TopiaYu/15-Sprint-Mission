@@ -24,7 +24,7 @@ const header = css`
         order: 1;
     }
 
-    > button {
+    > a {
         order: 3;
         width: 130px;
         height: 42px;
@@ -33,6 +33,10 @@ const header = css`
         background: var(--blue);
         color: white;
         cursor: pointer;
+        text-decoration: none; 
+        display: flex;
+        align-items: center;
+        justify-content: center;  
     }
 
     > input {
@@ -68,7 +72,7 @@ const header = css`
             grid-row: 1;
         }
 
-        > button {
+        > a {
             grid-column: 2;
             grid-row: 1;
         }
