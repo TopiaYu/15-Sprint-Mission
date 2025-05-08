@@ -5,7 +5,7 @@ const headerStyle = css`
     top: 0;
     width: 100%;
     height: 70px;
-    padding: 0 200px;
+    padding: 9px 200px;
     background: white;
     border-bottom: 1px solid #DFDFDF;
 

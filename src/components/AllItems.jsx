@@ -3,6 +3,7 @@ import {
     header,
     title,
     itemGrid,
+    pagenation
 } from "./AllitemsStyle";
 import ItemList from "./ItemList";
 
@@ -25,6 +26,9 @@ const AllItems = ({ items }) => {
                             <ItemList key={item.id} item={item} />
                         )
                     })}
+                </div>
+                <div css={pagenation} >
+                    페이지네이션 버튼
                 </div>
             </div>
         </div>

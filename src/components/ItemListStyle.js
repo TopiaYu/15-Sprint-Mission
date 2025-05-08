@@ -20,18 +20,22 @@ const itemTitle = css`
     font-size: 14px;
     font-weight: 500;
     color: var(--gray-800);
+    margin-top: 16px;
+    margin-bottom: 6px;
 `
 
 const itemPrice = css`
     font-size: 16px;
     font-weight: 700;
     color: var(--gray-800);
+    margin-bottom: 6px;
 `
 
 const itemLikes = css`
     font-size: 12px;
     font-weight: 500;
     color: var(--gray-600);
+    margin-bottom: 6px;
 `
 
 export {
