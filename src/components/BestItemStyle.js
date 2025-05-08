@@ -3,7 +3,6 @@ import { css } from "@emotion/react"
 
 const constainer = css`
     width: 100%;
-    height: 426px;
     margin-bottom: 40px
 `
 

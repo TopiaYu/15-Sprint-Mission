@@ -3,6 +3,8 @@ import {
     headerStyle,
     headerInner,
     headerLeft,
+    logoStyles,
+    logoTextStyles,
     NavlinkStyle,
     aTag,
     LoginProfileStyle,
@@ -10,14 +12,26 @@ import {
  } from './HeaderStyle';
 
 import LoginProfile from '../assets/LoginProfile.png';
-import logo1x from '../assets/logo1x.png';
+import pandaLogo from '../assets/pandaLogo.png';
+import pandaLogoTitle from '../assets/pandaLogoTitle.png'
 import { Link, useLocation } from 'react-router-dom';
 import { css } from '@emotion/react';
+import { useEffect, useState } from 'react';
 
 /** @jsxImportSource @emotion/react */
 
 const Header = () => {
     const location = useLocation();
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
+
+    useEffect(()=> {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 425);
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize)
+    }, []);
 
     return(
         <>
@@ -25,7 +39,11 @@ const Header = () => {
                 <div css={headerInner}>
                     <div css={headerLeft}>  
                         <Link to={"/"}>
-                            <img src={logo1x} alt='로고'></img>  
+                            {isMobile? (
+                                <img src={pandaLogoTitle} alt='로고 텍스트' css={logoTextStyles} />
+                            ) : (
+                                <img src={pandaLogo} alt='로고 이미지' css={logoStyles} />
+                            )}
                         </Link>         
                         <div css={NavlinkStyle}>
                             <Link to={"/FreeBoard"} css={aTag}>자유게시판</Link>
