@@ -19,7 +19,7 @@ const AllItems = ({ items, onChangeOrder }) => {
                 <div css={header}>
                     <h2 css={title}>전체 상품</h2>
                     <input placeholder="🔎 검색할 상품을 입력해주세요"></input>
-                    <Link to={"/additem"}>
+                    <Link to={"/additems"}>
                     상품 등록하기
                         {/* <button >상품 등록하기</button> */}
                     </Link>
