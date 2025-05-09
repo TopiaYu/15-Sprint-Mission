@@ -58,11 +58,21 @@ const contentHeader = css`
         border: none;
         width: 74px;
         height: 42px;
+        background: var(--gray-400);
+        color: white;
     }
 `
 
 const headerButton = css`
     cursor: pointer;
+
+    &:not(:disabled) {
+        background: var(--blue);
+    }
+    
+    &:disabled {
+    cursor: not-allowed;
+    }
 `
 
 const addItemImageWrapper = css`
@@ -136,8 +146,12 @@ const alertMessage = css`
 
 const AddItem = () => {
 
-    const [imgPreviewUrl, setImgPreviewUrl] = useState(null)
-    const [showWarning, setShowWarning] = useState(false)
+    const [imgPreviewUrl, setImgPreviewUrl] = useState(null); // 추가했을때 이미지프리뷰
+    const [showWarning, setShowWarning] = useState(false);
+    const [itemName, setItemName] = useState("");
+    const [itemDescription, setItemDiscription] = useState("");
+    const [itemPrice, setItemPrice] = useState("");
+    const [itemTag, setItemTag] = useState("");
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
@@ -158,12 +172,30 @@ const AddItem = () => {
         setShowWarning(false);
     }
 
+    const handleSubmitButton = () => {
+
+    }
+
+
     return (
         <>
             <form css={addItem}>
                 <div css={contentHeader}>
                     <h3>상품 등록하기</h3>
-                    <button type="submit" css={headerButton}>등록</button>
+                    <button 
+                        type="submit" 
+                        css={headerButton} 
+                        onClick={handleSubmitButton}
+                        disabled={
+                                itemName.trim() === "" || 
+                                itemDescription.trim() === "" ||
+                                itemPrice.trim() === "" ||
+                                itemTag.trim() === "" ||
+                                !imgPreviewUrl
+                        }
+                    >
+                            등록
+                        </button>
                 </div>
                 <div css={itemWrapper}>
                     <div >
@@ -199,22 +231,22 @@ const AddItem = () => {
 
                     <div>
                         <label htmlFor='name'>상품명</label>
-                        <input id="name" placeholder="상품명을 입력해주세요"></input>
+                        <input id="name" placeholder="상품명을 입력해주세요" value={itemName} onChange={(e)=> setItemName(e.target.value)}></input>
                     </div>
                     
                     <div>
                         <label>상품 소개</label>
-                        <textarea id="description" placeholder="상품 소개를 입력해주세요"></textarea>
+                        <textarea id="description" placeholder="상품 소개를 입력해주세요" value={itemDescription} onChange={(e) => setItemDiscription(e.target.value)}></textarea>
                     </div>
 
                     <div>
                         <label>판매가격</label>
-                        <input id="price" placeholder="판매가격을 입력해주세요"></input>
+                        <input id="price" placeholder="판매가격을 입력해주세요" type='number' value={itemPrice} onChange={(e) => setItemPrice(e.target.value)}></input>
                     </div>
 
                     <div>
                         <label>태그</label>
-                        <input id="tag" placeholder="태그를 입력해주세요"></input>
+                        <input id="tag" placeholder="태그를 입력해주세요" value={itemTag} onChange={(e) => setItemTag(e.target.value)}></input>
                     </div>
                 </div>
             </form>
