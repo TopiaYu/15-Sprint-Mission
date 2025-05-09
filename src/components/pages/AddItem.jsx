@@ -107,12 +107,25 @@ const previewImg = css`
     border-radius: 12px;
 `
 
+const alertMessage = css`
+    color: rgba(247, 71, 71, 1);
+    font-weight: 400;
+    font-size: 16px;
+`
+
 const AddItem = () => {
 
     const [imgPreviewUrl, setImgPreviewUrl] = useState(null)
+    const [showWarning, setShowWarning] = useState(false)
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
+
+        if (imgPreviewUrl !== null) {
+            setShowWarning(true)
+            return
+        }
+        
         if (file) {
             const preview = URL.createObjectURL(file);
             setImgPreviewUrl(preview) 
@@ -150,6 +163,10 @@ const AddItem = () => {
                             onChange={handleFileChange}
                         />    
                     </div>
+
+                    {showWarning && (
+                        <p css={alertMessage}>이미지는 한 장만 선택할 수 있습니다.</p>
+                    )}
 
                     <div>
                         <label htmlFor='name'>상품명</label>
