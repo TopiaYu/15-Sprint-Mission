@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import plusIcon from '../../assets/plusIcon.png'
+import deleteIcon from '../../assets/deleteIcon.png'
 import { useState } from 'react';
 
 /** @jsxImportSource @emotion/react */
@@ -93,11 +94,21 @@ const imgRowWrapper = css`
 `
 
 const previewBox = css`
+    position: relative;
     margin-top: 16px;    
     display: flex;
     width: 282px;
     aspect-ratio: 1/1;
     cursor: pointer;
+
+    > button {
+        position: absolute;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        top: 8px;
+        right: 8px;
+    }
 `
 
 const previewImg = css`
@@ -107,11 +118,17 @@ const previewImg = css`
     border-radius: 12px;
 `
 
+const deleteImage = css`
+    width: 22px;
+    height: 24px;
+`
+
 const alertMessage = css`
     color: rgba(247, 71, 71, 1);
     font-weight: 400;
     font-size: 16px;
 `
+
 
 const AddItem = () => {
 
@@ -152,6 +169,9 @@ const AddItem = () => {
                         {imgPreviewUrl && (
                             <div css={previewBox}>
                                 <img src={imgPreviewUrl} alt='선택한 사진' css={previewImg} />
+                                <button>
+                                    <img src={deleteIcon} alt='삭제버튼' css={deleteImage} />
+                                </button>
                             </div>
                         )}
                         </div>
