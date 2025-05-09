@@ -149,6 +149,11 @@ const AddItem = () => {
         }
     }
 
+    const handleFileDelete = () => {
+        setImgPreviewUrl(null);
+        setShowWarning(false);
+    }
+
     return (
         <>
             <form css={addItem}>
@@ -169,7 +174,7 @@ const AddItem = () => {
                         {imgPreviewUrl && (
                             <div css={previewBox}>
                                 <img src={imgPreviewUrl} alt='선택한 사진' css={previewImg} />
-                                <button>
+                                <button onClick={handleFileDelete}>
                                     <img src={deleteIcon} alt='삭제버튼' css={deleteImage} />
                                 </button>
                             </div>
