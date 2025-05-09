@@ -99,7 +99,6 @@ const previewBox = css`
     display: flex;
     width: 282px;
     aspect-ratio: 1/1;
-    cursor: pointer;
 
     > button {
         position: absolute;
@@ -108,6 +107,11 @@ const previewBox = css`
         cursor: pointer;
         top: 8px;
         right: 8px;
+        transition: all 0.2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 `
 
