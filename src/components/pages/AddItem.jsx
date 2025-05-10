@@ -91,6 +91,10 @@ const addItemBox = css`
     background: var(--gray-100);
     border-radius: 12px;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        width: 168px;
+    }
 `
 
 const plusIconStyle = css`
@@ -101,6 +105,10 @@ const plusIconStyle = css`
 const imgRowWrapper = css`
     display: flex;
     gap: 24px;
+
+    @media (max-width: 768px) {
+        gap: 10px;
+    }
 `
 
 const previewBox = css`
@@ -109,6 +117,10 @@ const previewBox = css`
     display: flex;
     width: 282px;
     aspect-ratio: 1/1;
+
+    @media (max-width: 768px) {
+        width: 168px;
+    }
 
     > button {
         position: absolute;
