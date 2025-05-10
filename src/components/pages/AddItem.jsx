@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import plusIcon from '../../assets/plusIcon.png'
 import deleteIcon from '../../assets/deleteIcon.png'
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 /** @jsxImportSource @emotion/react */
 
@@ -11,7 +11,7 @@ const itemWrapper = css`
     font-weight: 700;
 
     > div {
-        margin: 32px 0;
+        margin-top: 32px;
     }
 
     > div > input, textarea {
@@ -143,6 +143,37 @@ const alertMessage = css`
     font-size: 16px;
 `
 
+const itemHashTagWrapper = css`
+    background: var(--gray-100);
+    border-radius: 26px;
+    display: inline-flex;
+    padding: 5px 12px 5px 16px;; 
+
+    > span {
+        color: var(--gray-800);
+        display: flex;
+        align-items: center;
+    }
+
+    > button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding-top: 2px;
+    }
+`
+
+const ItemTag = css`
+    color: var(--gray-800);
+`
+
+const hashTagContainer = css`
+  margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+`
+
 
 const AddItem = () => {
 
@@ -152,6 +183,7 @@ const AddItem = () => {
     const [itemDescription, setItemDiscription] = useState("");
     const [itemPrice, setItemPrice] = useState("");
     const [itemTag, setItemTag] = useState("");
+    const [itemHashTag, setItemHashTag] = useState([]);
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
@@ -176,6 +208,11 @@ const AddItem = () => {
 
     }
 
+    const handleDeleteTag = (tagToDelete) => {
+        setItemHashTag(itemHashTag.filter(tag => tag !==tagToDelete));
+    }
+
+    const tagEndRef = useRef(null); // 태그 생성시 스크롤 이동을 위함
 
     return (
         <>
@@ -190,7 +227,7 @@ const AddItem = () => {
                                 itemName.trim() === "" || 
                                 itemDescription.trim() === "" ||
                                 itemPrice.trim() === "" ||
-                                itemTag.trim() === "" ||
+                                itemHashTag.length === 0  ||
                                 !imgPreviewUrl
                         }
                     >
@@ -246,8 +283,43 @@ const AddItem = () => {
 
                     <div>
                         <label>태그</label>
-                        <input id="tag" placeholder="태그를 입력해주세요" value={itemTag} onChange={(e) => setItemTag(e.target.value)}></input>
+                        <input 
+                            id="tag" 
+                            placeholder="태그를 입력해주세요" 
+                            value={itemTag} onChange={(e) => setItemTag(e.target.value)}
+                            onKeyDown={(e) =>  {
+                                if (e.key === "Enter"&& itemTag.trim() !== "") {
+                                    e.preventDefault();
+
+                                    const newTag = itemTag.trim();
+                                    if (!itemHashTag.includes(newTag)) {
+                                        setItemHashTag((prev) => [...prev, newTag])
+                                    }
+                                    setItemTag("")
+                                    //태그 생성시 스크롤 이동
+                                    setTimeout(() => {
+                                        tagEndRef.current?.scrollIntoView({behavior: "smooth"})
+                                    },0)
+                                }
+                            }}
+                        ></input>
                     </div>
+
+                    {itemHashTag.length > 0 && (
+                        <div css={hashTagContainer}>
+                            {itemHashTag.map((tag) => (
+                                <div key={tag} css={itemHashTagWrapper}>
+                                    <span css={ItemTag}>
+                                        #{tag}
+                                    </span>
+                                    <button type='button' onClick={() => handleDeleteTag(tag)}>
+                                        <img src={deleteIcon} alt='삭제버튼' css={deleteImage} />
+                                    </button>
+                                </div>
+                            ))}
+                            <div ref={tagEndRef} />
+                        </div>
+                    )}
                 </div>
             </form>
         </>
