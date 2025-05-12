@@ -179,17 +179,21 @@ const makeComment = css`
     padding: 16px;
     resize: none;
     }
+`
 
-    > button {
-        width: 74px;
-        height: 42px;
-        border-radius: 8px;
-        border: none;
-        background: var(--gray-400);
-        align-self: flex-end;
-        color: white;
-        cursor: pointer;
-    }
+const commentButtonStyle = css`
+    width: 74px;
+    height: 42px;
+    border-radius: 8px;
+    border: none;
+    background: var(--gray-400);
+    align-self: flex-end;
+    color: white;
+    cursor: pointer;
+`
+
+const activeButtonStyle = css`
+    background: var(--blue)
 `
 
 const commentList = css`
@@ -242,6 +246,12 @@ const ItemDetail = () => {
     const {productId} = useParams();
     const [item, setItem] = useState(null);
     const [comments, setComments] = useState([]);
+    const [commentTextarea, setCommentTextarea] = useState("");
+    const isButtonActive = commentTextarea.trim().length > 0;
+
+    const handleChange = (e) => {
+        setCommentTextarea(e.target.value);
+    }
 
     useEffect(()=> {
         async function fetchData() {
@@ -325,8 +335,13 @@ const ItemDetail = () => {
             <div css={commentSection}>
                 <div css={makeComment}>
                     <label htmlFor="makecomment">문의하기</label>
-                    <textarea id="makecomment" placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다." />
-                    <button type="button">등록</button>
+                    <textarea 
+                        id="makecomment" 
+                        placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+                        value={commentTextarea}
+                        onChange={handleChange}
+                        />
+                    <button type="button" css={[commentButtonStyle, isButtonActive && activeButtonStyle]} >등록</button>
                 </div>
                 <ul css={commentList}>
                     {comments.length > 0 &&
