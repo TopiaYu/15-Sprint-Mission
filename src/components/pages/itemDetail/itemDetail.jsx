@@ -23,6 +23,10 @@ const itemDetailWrapper = css`
     display: flex;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--gray-200);
+
+        @media(max-width: 425px) {
+            flex-direction: column;
+        }
 `
 const imgSection = css`
     
@@ -31,6 +35,10 @@ const imgSection = css`
     aspect-ratio: 1/1;
     border-radius: 16px;
     object-fit: cover;
+
+        @media(max-width: 768px) {
+            width: 340px;
+        }
     }
 `
 
@@ -97,6 +105,7 @@ const itemTag = css`
 
 const tagWrapper = css`
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     margin-top: 16px;
 `

@@ -32,7 +32,7 @@ const AllItems = ({ items, onChangeOrder }) => {
                 <div css={itemGrid} >
                     {items.map((item) => {
                         return(
-                            <Link to={`/items/${item.id}`} css={itemLinkStyle} >
+                            <Link to={`/Items/${item.id}`} css={itemLinkStyle} >
                                 <ItemList key={item.id} item={item} />
                             </Link>
                         )
