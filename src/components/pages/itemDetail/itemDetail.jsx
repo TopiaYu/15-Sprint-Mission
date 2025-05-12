@@ -6,6 +6,7 @@ import backIcon from '../../../assets/backIcon.png'
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getItemId, getProductComments } from '../../../api/Api';
+import { Link } from 'react-router-dom';
 
 /** @jsxImportSource @emotion/react */
 
@@ -15,14 +16,13 @@ const pageWrapper = css`
 `
 
 const itemDetailWrapper = css`
-    margin: 16px;
+    margin: 32px 16px 42px;
     gap: 24px;
     display: flex;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--gray-200);
 `
 const imgSection = css`
-    // width: 100%;
     
     > img {
     width: 486px;
@@ -106,6 +106,11 @@ const tagBox = css`
 
     font-weight: 600;
     color: var(--gray-600);
+
+    > span {
+        color: var(--gray-800);
+        font-weight: 400;
+    }
 
     > h3 {
         font-weight: 600;
@@ -228,6 +233,10 @@ const backToListButtonStyle = css`
     }
 `
 
+const linkStyle = css`
+    text-decoration: none;
+`
+
 const ItemDetail = () => {
 
     const {productId} = useParams();
@@ -343,10 +352,13 @@ const ItemDetail = () => {
                     }                
                 </ul>
             </div>
-            <button type='button' css={backToListButtonStyle} >
-                <p>목록으로 돌아가기</p>
-                <img src={backIcon} />
-            </button>
+            <Link to={"/items"} css={linkStyle}>
+                <button type='button' css={backToListButtonStyle} >
+                    <p>목록으로 돌아가기</p>
+                    <img src={backIcon} />
+                </button>
+            </Link>
+
         </div>
     )
 }

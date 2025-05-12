@@ -3,6 +3,7 @@ import {
     constainer,
     title,
     itemGrid,
+    linkStyle,
 } from "./BestItemStyle";
 import ItemList from "./ItemList";
 
@@ -20,7 +21,7 @@ const BestItem = ({ items }) => {
             <div css={itemGrid} >
                 {bestItems.map((item) => {
                     return (
-                        <Link to={`${item.id}`}>
+                        <Link to={`${item.id}`} css={linkStyle}>
                             <ItemList key={item.id} item={item}/>
                         </Link>
                     )
