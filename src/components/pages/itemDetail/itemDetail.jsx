@@ -3,6 +3,8 @@ import { css } from '@emotion/react';
 import kebabIcon from '../../../assets/kebabIcon.png'
 import userImage from '../../../assets/LoginProfile.png'
 import backIcon from '../../../assets/backIcon.png'
+import noCommentImg from '../../../assets/noCommentImg.png'
+import defaultImage from '../../../assets/img_default.png'
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getItemId, getProductComments } from '../../../api/Api';
@@ -27,7 +29,6 @@ const imgSection = css`
     > img {
     width: 486px;
     aspect-ratio: 1/1;
-    background: pink;
     border-radius: 16px;
     object-fit: cover;
     }
@@ -71,9 +72,11 @@ const itemDescription = css`
     gap: 16px;
     font-weight: 600;
     color: var(--gray-600);
+    font-size: 16px;
 
     > h3 {
         font-weight: 600;
+        font-size: 16px;
     }
 `
 
@@ -84,6 +87,7 @@ const itemTag = css`
 
     > h3 {
         font-weight: 600;
+        font-size: 16px;
     }
 
     > span {
@@ -241,6 +245,13 @@ const linkStyle = css`
     text-decoration: none;
 `
 
+const noCommentImgStyles = css`
+    margin: 10px auto 48px;
+    display: flex;
+    justify-content: center;
+    width: 196px;
+`
+
 const ItemDetail = () => {
 
     const {productId} = useParams();
@@ -289,7 +300,12 @@ const ItemDetail = () => {
         <div css={pageWrapper}>
             <div css={itemDetailWrapper}>
                 <div css={imgSection}>
-                    <img src={item.images} />
+                    <img src={item.images || defaultImage}
+                        onError={(e)=> {
+                            e.target.onerror = null;
+                            e.target.src = defaultImage;
+                        }}    
+                    />
                 </div>
                 <div css={itemDetail}>
                     <div css={itemHeader}>
@@ -344,7 +360,11 @@ const ItemDetail = () => {
                     <button type="button" css={[commentButtonStyle, isButtonActive && activeButtonStyle]} >등록</button>
                 </div>
                 <ul css={commentList}>
-                    {comments.length > 0 &&
+                    {comments.length == 0 ? 
+                    <div>
+                        <img src={noCommentImg} css={noCommentImgStyles} />
+                    </div>
+                    :
                         comments.map((comment) =>(
                             <li key={comment.id} css={commentListStyle}>
                                 <div css={commentHeader}>
