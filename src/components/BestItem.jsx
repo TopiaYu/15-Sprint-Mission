@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { 
     constainer,
     title,
@@ -18,8 +19,12 @@ const BestItem = ({ items }) => {
             
             <div css={itemGrid} >
                 {bestItems.map((item) => {
-                    return <ItemList key={item.id} item={item}/>
-                })}                
+                    return (
+                        <Link to={`${item.id}`}>
+                            <ItemList key={item.id} item={item}/>
+                        </Link>
+                    )
+                })}          
             </div>
         </div>
     )

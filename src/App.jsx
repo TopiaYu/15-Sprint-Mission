@@ -21,7 +21,7 @@ function App() {
           <Route path="/freeBoard" element={<FreeBoard />} />
           <Route path="/items" element={<Items />} />
           <Route path="/additems" element={<AddItem />} />
-          <Route path="/items/:id" element={<ItemDetail />} />
+          <Route path="/items/:productId" element={<ItemDetail />} />
         </Routes>
     </>
   )

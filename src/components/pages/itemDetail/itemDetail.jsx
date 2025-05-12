@@ -2,6 +2,10 @@
 import { css } from '@emotion/react';
 import kebabIcon from '../../../assets/kebabIcon.png'
 import userImage from '../../../assets/LoginProfile.png'
+import backIcon from '../../../assets/backIcon.png'
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { getItemId, getProductComments } from '../../../api/Api';
 
 /** @jsxImportSource @emotion/react */
 
@@ -25,6 +29,7 @@ const imgSection = css`
     aspect-ratio: 1/1;
     background: pink;
     border-radius: 16px;
+    object-fit: cover;
     }
 `
 
@@ -33,45 +38,77 @@ const itemDetail = css`
     flex-direction: column;
     flex: 1;
     gap: 24px;  
-    // border-bottom: 1px solid var(--gray-200);
 `
 
 const itemHeader = css`
     border-bottom: 1px solid var(--gray-200);
     padding-bottom: 16px;
+    color: var(--gray-800);
+
+    
+    > h2 {
+        font-size: 40px;
+    }
 `
 
 const titleHeader = css`
-    color: var(--grey-800);
     font-size: 24px;
     font-weight: 600;
     display: flex;
+    margin-bottom: 16px;
     justify-content: space-between;
 `
 
 const editIconStyle = css`
     width: 24px;
     height: 24px;
+    cursor: pointer;
 `
 
 const itemDescription = css`
     display: flex;
     flex-direction: column;
     gap: 16px;
+    font-weight: 600;
+    color: var(--gray-600);
+
+    > h3 {
+        font-weight: 600;
+    }
 `
 
 const itemTag = css`
     margin-bottom: 62px;
+    font-weight: 600;
+    color: var(--gray-600);
 
-    > div {
-        display: inline-flex;
-        background: yellow;
-        padding: 6px;
+    > h3 {
+        font-weight: 600;
     }
 
     > span {
-        background: pink;
         padding: 6px;
+    }
+`
+
+const tagWrapper = css`
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+`
+
+const tagBox = css`
+    display: inline-flex;
+    padding: 6px 16px;
+    background: var(--gray-100);
+    border-radius: 26px;
+    border: none;
+
+    font-weight: 600;
+    color: var(--gray-600);
+
+    > h3 {
+        font-weight: 600;
     }
 `
 
@@ -93,15 +130,28 @@ const userImg = css`
 `
 
 const userText = css`
+    font-weight: 500;
+    color: var(--gray-600);
+    font-size: 14px;
     flex: 1;
+
+    > p {
+        margin-top: 6px;
+        font-weight: 400;
+        color: var(--gray-400);
+    }
 `
 
 const likeSection = css `
-    width: 
-    
+    // display: inline-flex;
+    border-radius: 35px;
+    border: 1px solid var(--gray-200);
+    padding: 4px 12px;
+    font-size: 16px;
 
     > button {
-
+        background: transparent;
+        border: none;
     }
 `
 
@@ -116,6 +166,13 @@ const makeComment = css`
 
     > textarea {
     height: 104px;
+    border: none;
+    background: var(--gray-100);
+    border-radius: 12px;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    padding: 16px;
+    resize: none;
     }
 
     > button {
@@ -123,6 +180,10 @@ const makeComment = css`
         height: 42px;
         border-radius: 8px;
         border: none;
+        background: var(--gray-400);
+        align-self: flex-end;
+        color: white;
+        cursor: pointer;
     }
 `
 
@@ -133,7 +194,7 @@ const commentList = css`
     gap: 24px;
 `
 
-const comment =css`
+const commentListStyle =css`
     display: flex;
     flex-direction: column;
     margin-top: 24px;
@@ -146,42 +207,106 @@ const commentHeader = css`
     justify-content: space-between;
 `
 
+const backToListButtonStyle = css`
+    background: var(--blue);
+    height: 48px;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 12px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 24px auto;
+    cursor: pointer;
+    gap: 8px;
+    
+
+    > img {
+        width: 24px;
+        height: 24px;
+    }
+`
+
 const ItemDetail = () => {
+
+    const {productId} = useParams();
+    const [item, setItem] = useState(null);
+    const [comments, setComments] = useState([]);
+
+    useEffect(()=> {
+        async function fetchData() {
+            try {
+                const data = await getItemId(productId);
+                setItem(data);
+            }   catch (err) {
+                console.error(err);
+            }
+        }
+
+        fetchData();
+    }, [productId])
+
+
+    useEffect(()=> {
+        async function fetchData() {
+            try {
+                const data = await getProductComments(Number(productId));
+                setComments(data);
+            } catch (error) {
+                console.error("커멘트 불러오기:", error);
+            }
+        }
+
+        if (productId) {
+            fetchData();
+        }
+        
+    }, [productId]);
+
+    if (!item) return <div>로딩 중...</div>;
+
     return(
         <div css={pageWrapper}>
             <div css={itemDetailWrapper}>
                 <div css={imgSection}>
-                    <img />
+                    <img src={item.images} />
                 </div>
                 <div css={itemDetail}>
                     <div css={itemHeader}>
                         <div css={titleHeader}>
-                            <h3>타이틀</h3>
+                            <h3>{item.name}</h3>
                             <img src={kebabIcon} css={editIconStyle} />
                         </div>
-                        <h2>price</h2>
+                        <h2>{item.price}원</h2>
                     </div>
                     <div css={itemDescription}>
-                        <h3>상품 소개</h3>
-                        <h4>상품 소개상품 소개상품 소개상품 소개상품 소개상품 소개</h4>
+                        <h3>상품소개</h3>
+                        <h4>{item.description}</h4>
                     </div>
                     <div css={itemTag}>
                         <h3>상품 태그</h3>  
-                        <div>
-                            <span>#태그</span>
-                        </div>
+                            <div css={tagWrapper}>
+                                {item.tags.map((tag)=> {
+                                    return(
+                                        <div key={item.id} css={tagBox}>
+                                            <span>#{tag}</span>
+                                        </div>
+                                    )
+                                })}
+                            </div>
                     </div>
                     <div css={itemUserInfo}>
                         <div css={userImg}>
                             <img src={userImage} />
                         </div>
                         <div css={userText}>
-                            <h4>이름</h4>
-                            <p>날짜</p>
+                            <h4>{item.ownerNickname}</h4>
+                            <p>{new Date(item.createdAt).toISOString().slice(0, 10)}</p>
                         </div>
                         <div css={likeSection}>
-                            <button></button>
-                            숫자
+                            <button>💛</button>
+                            {item.favoriteCount}
                         </div>
                     </div>
                 </div>
@@ -195,44 +320,33 @@ const ItemDetail = () => {
                     <button type="button">등록</button>
                 </div>
                 <ul css={commentList}>
-                    <li css={comment}>
-                        <div css={commentHeader}>
-                            <p>내용</p>
-                            <img src={kebabIcon} css={editIconStyle} />
-                        </div>
-                        
-                        <div css={itemUserInfo}>
-                            <div css={userImg}>
-                                <img src={userImage} />
-                            </div>
-                            <div css={userText}>
-                                <h4>이름</h4>
-                                <p>날짜</p>
-                            </div>
-                            <hr />
-                        </div>
-                    </li>
-
-                    <li css={comment}>
-                        <div css={commentHeader}>
-                            <p>내용</p>
-                            <img src={kebabIcon} css={editIconStyle} />
-                        </div>
-                        
-                        <div css={itemUserInfo}>
-                            <div css={userImg}>
-                                <img src={userImage} />
-                            </div>
-                            <div css={userText}>
-                                <h4>이름</h4>
-                                <p>날짜</p>
-                            </div>
-                            <hr />
-                        </div>
-                    </li>
-
+                    {comments.length > 0 &&
+                        comments.map((comment) =>(
+                            <li key={comment.id} css={commentListStyle}>
+                                <div css={commentHeader}>
+                                    <p>{comment.content}</p>
+                                    <img src={kebabIcon} css={editIconStyle} />
+                                </div>
+                                
+                                <div css={itemUserInfo}>
+                                    <div css={userImg}>
+                                        <img src={userImage} />
+                                    </div>
+                                    <div css={userText}>
+                                        <h4>{comment.writer.nickname}</h4>
+                                        <p>{new Date(comment.createdAt).toISOString().slice(0, 10)}</p>
+                                    </div>
+                                    <hr />
+                                </div>
+                            </li>
+                        ))
+                    }                
                 </ul>
             </div>
+            <button type='button' css={backToListButtonStyle} >
+                <p>목록으로 돌아가기</p>
+                <img src={backIcon} />
+            </button>
         </div>
     )
 }
