@@ -39,6 +39,10 @@ const imgSection = css`
         @media(max-width: 768px) {
             width: 340px;
         }
+
+        @media(max-width: 425px) {
+            width: 100%;
+        }
     }
 `
 
